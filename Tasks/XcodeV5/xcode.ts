@@ -165,7 +165,7 @@ async function run() {
         }
 
         if (xcodeMajorVersion === 10) {
-            xcb.arg(['-UseModernBuildSystem', 'NO']);
+            xcb.arg('-UseModernBuildSystem=NO');
         }
         xcb.arg(actions);
         if (args) {
@@ -292,7 +292,7 @@ async function run() {
             xcodeArchive.argIf(scheme, ['-scheme', scheme]);
 
             if (xcodeMajorVersion === 10) {
-                xcodeArchive.arg(['-UseModernBuildSystem', 'NO']);
+                xcodeArchive.arg('-UseModernBuildSystem=NO');
             }
             xcodeArchive.arg('archive'); //archive action
             xcodeArchive.argIf(sdk, ['-sdk', sdk]);
