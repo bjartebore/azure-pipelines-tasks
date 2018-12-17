@@ -163,6 +163,10 @@ async function run() {
                 xcb.arg(['-destination', destination]);
             });
         }
+
+        if (xcodeMajorVersion === 10) {
+            xcb.arg(['-UseModernBuildSystem', 'NO']);
+        }
         xcb.arg(actions);
         if (args) {
             xcb.line(args);
@@ -286,6 +290,10 @@ async function run() {
                 xcodeArchive.arg(ws);
             }
             xcodeArchive.argIf(scheme, ['-scheme', scheme]);
+
+            if (xcodeMajorVersion === 10) {
+                xcodeArchive.arg(['-UseModernBuildSystem', 'NO']);
+            }
             xcodeArchive.arg('archive'); //archive action
             xcodeArchive.argIf(sdk, ['-sdk', sdk]);
             xcodeArchive.argIf(configuration, ['-configuration', configuration]);
